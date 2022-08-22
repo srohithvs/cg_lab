@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Account {
 
 		private long accNum;
-		private double balance;
+		public double balance;
 		private Person accHolder;
 		
 		public Account(String name,float age,long accNum,double balance)
@@ -28,39 +28,20 @@ public class Account {
 		public void setBalance(double balance) {
 			this.balance = balance;
 		}
-		
-		public void deposit(double bal)
-		{
-			this.balance += bal;
-		}
-		public void withdraw(double bal)
-		{
-			if((this.balance-bal)<500)
-				System.out.println("Sorry, Minimun balance should be INR 500");
-			else
-				this.balance -= bal;
+
+		public void deposit(double balance) {
+			this.balance = this.balance + balance;
 		}
 
+		public void withdraw(double balance) {
+			this.balance = this.balance - balance;
+		}
+		
 		@Override
 		public String toString() {
 			return "Account [accNum=" + accNum + ", balance=" + balance + ", accHolder=" + accHolder + "]";
 		}
-		
-		
-
-		public void setAccHolder(Person accHolder) {
-			this.accHolder = accHolder;
-		}
-
-		public void deposite(Double balance) {
-			Double b=this.getBalance()+balance;
-			balance=b;
-		}
-
-		public void withdraw(Double balance) {
-			Double b=this.getBalance()-balance;
-			balance=b;
-		}
+	
 		
 		public static void main(String args[]) {
 			Scanner sc = new Scanner(System.in);
@@ -69,15 +50,21 @@ public class Account {
 			double balance = sc.nextDouble();
 			String name = sc.next();
 			float age = sc.nextFloat();
-			double overdraftLimit = sc.nextDouble();
+			//double overdraftLimit = sc.nextDouble();
 
 			Account a = new Account(name, age, accNum, balance);
-			SavingAccount a1 = new SavingAccount(name, age, accNum, balance);
-			CurrentAccount a2 = new CurrentAccount(name, age, accNum, balance, overdraftLimit);
+			//SavingAccount a1 = new SavingAccount(name, age, accNum, balance);
+			//CurrentAccount a2 = new CurrentAccount(name, age, accNum, balance, overdraftLimit);
+			
+			a.deposit(4000);
+			a.withdraw(2000);
+			double b = a.getBalance();
+			
+			System.out.println("balance:"+ b);
 			
 			System.out.println(a);
-			System.out.println(a1);
-			System.out.println(a2);
+			//System.out.println(a1);
+			//System.out.println(a2);
 			sc.close();
 	}
 }
